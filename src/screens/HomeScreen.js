@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
+import CourseBlock from '../components/CourseBlock';
 
 // <View style={styles.helpContainer}>
 //   <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
@@ -48,6 +49,7 @@ export default function HomeScreen() {
       <ScrollView
         style={styles.sub_container}
         contentContainerStyle={styles.contentContainer}>
+        <CourseBlock/>
         <Text style={styles.generic_text}>
           Designed to integrate Lou's List with scheduling tools.
         </Text>
