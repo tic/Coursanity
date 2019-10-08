@@ -24,53 +24,66 @@ HomeStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
+      name='home'
     />
   ),
 };
 
 HomeStack.path = '';
 
-const LinksStack = createStackNavigator(
+const ExploreStack = createStackNavigator(
   {
     Links: LinksScreen,
   },
   config
 );
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+ExploreStack.navigationOptions = {
+  tabBarLabel: 'Explore',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+    <TabBarIcon focused={focused} name='compass' />
   ),
 };
 
-LinksStack.path = '';
+ExploreStack.path = '';
 
-const SettingsStack = createStackNavigator(
+const SearchStack = createStackNavigator(
+  {
+    Links: LinksScreen,
+  },
+  config
+);
+
+SearchStack.navigationOptions = {
+  tabBarLabel: 'Search',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name='search' />
+  ),
+};
+
+SearchStack.path = '';
+
+const ProfileStack = createStackNavigator(
   {
     Settings: SettingsScreen,
   },
   config
 );
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+ProfileStack.navigationOptions = {
+  tabBarLabel: 'Profile',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+    <TabBarIcon focused={focused} name='user' />
   ),
 };
 
-SettingsStack.path = '';
+ProfileStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
-  LinksStack,
-  SettingsStack,
+  ExploreStack,
+  SearchStack,
+  ProfileStack,
 });
 
 tabNavigator.path = '';
