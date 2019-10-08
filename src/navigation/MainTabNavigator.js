@@ -1,6 +1,7 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import Colors from '../constants/Colors';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
@@ -12,11 +13,15 @@ const config = Platform.select({
   default: {},
 });
 
+const tabBarOptions = {
+    activeTintColor: Colors.tabIconSelected,
+}
+
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
   },
-  config
+  config,
 );
 
 HomeStack.navigationOptions = {
@@ -27,6 +32,7 @@ HomeStack.navigationOptions = {
       name='home'
     />
   ),
+  tabBarOptions,
 };
 
 HomeStack.path = '';
@@ -43,6 +49,7 @@ ExploreStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused} name='compass' />
   ),
+  tabBarOptions,
 };
 
 ExploreStack.path = '';
@@ -59,6 +66,7 @@ SearchStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused} name='search' />
   ),
+  tabBarOptions,
 };
 
 SearchStack.path = '';
@@ -75,6 +83,7 @@ ProfileStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused} name='user' />
   ),
+  tabBarOptions,
 };
 
 ProfileStack.path = '';
@@ -85,7 +94,6 @@ const tabNavigator = createBottomTabNavigator({
   SearchStack,
   ProfileStack,
 });
-
 tabNavigator.path = '';
 
 export default tabNavigator;
