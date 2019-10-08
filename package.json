@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "minizlib": "^2.1.0"
+  },
+  "name": "uvascheduler-react",
+  "description": "A react-based wrapper for our existing UVAScheduler application.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tic/UVAScheduler-react/"
+  },
+  "author": "Jason Ashley + G. Michael Fitzgerald",
+  "license": "Apache-2.0"
+}
