@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import SemesterSelector from '../components/SemesterSelector';
+import Swiper from 'react-native-swiper';
 import api_links from '../constants/API';
 
 var async = require('async');
@@ -63,24 +64,42 @@ export default function ExploreScreen(props) {
     const [semesterID, setSemesterID] = useState("0000");
 
     return (
-        <View>
+        <View style={styles.container}>
             <SemesterSelector
                 setSemesterID={setSemesterID}/>
-            <Text>Currently selected semester: {semesterID}</Text>
+            <View style={styles.container}>
+                <Swiper style={styles.swiper}
+                        showsPagination={false}
+                        index={1}>
+                    <View style={styles.pane}>
+                        <Text>Explore Schools</Text>
+                    </View>
+                    <View style={styles.pane}>
+                        <Text>Explore Subjects</Text>
+                    </View>
+                    <View style={styles.pane}>
+                        <Text>Explore Courses</Text>
+                    </View>
+                </Swiper>
+            </View>
         </View>
     );
-
 }
 
-
 ExploreScreen.navigationOptions = {
-  title: 'Explore',
+    title: 'Explore',
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
     backgroundColor: '#fff',
   },
+  pane: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+  },
+  swiper: {
+  }
 });
