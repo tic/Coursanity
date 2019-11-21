@@ -3,9 +3,18 @@ import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import SemesterSelector from '../components/SemesterSelector';
 import Swiper from 'react-native-swiper';
 import api_links from '../constants/API';
+import ExploreSubjects from '../components/Explore/ExploreSubjects';
+import ExploreSchools from '../components/Explore/ExploreSchools';
+import ExploreCourses from '../components/Explore/ExploreCourses';
 
 var async = require('async');
 
+const START_TILE = 1;
+const titles = [
+    'Explore Schools',
+    'Explore Subjects',
+    'Explore Courses',
+];
 
 /*
 export default class ExploreScreen extends React.Component {
@@ -63,6 +72,13 @@ export default class ExploreScreen extends React.Component {
 export default function ExploreScreen(props) {
     const [semesterID, setSemesterID] = useState("0000");
 
+    let setTitle = index => { // Not currently working.
+        let newTitle = titles[index];
+        ExploreScreen.navigationOptions = {
+            title: newTitle ? newTitle : 'Explore',
+        };
+    }
+
     return (
         <View style={styles.container}>
             <SemesterSelector
@@ -70,15 +86,16 @@ export default function ExploreScreen(props) {
             <View style={styles.container}>
                 <Swiper style={styles.swiper}
                         showsPagination={false}
-                        index={1}>
+                        index={START_TILE}
+                        onIndexChanged={index => setTitle(index)}>
                     <View style={styles.pane}>
-                        <Text>Explore Schools</Text>
+                        <ExploreSchools semesterID={semesterID}/>
                     </View>
                     <View style={styles.pane}>
-                        <Text>Explore Subjects</Text>
+                        <ExploreSubjects semesterID={semesterID}/>
                     </View>
                     <View style={styles.pane}>
-                        <Text>Explore Courses</Text>
+                        <ExploreCourses semesterID={semesterID}/>
                     </View>
                 </Swiper>
             </View>
