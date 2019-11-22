@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, ScrollView, StyleSheet, FlatList, TouchableOpacity, Dimensions } from 'react-native';
 import LoadingSpinner from '../LoadingSpinner';
-import CommonNameTab from '../Courses/CommonNameTab';
+import CommonDisplayTab from '../Courses/CommonDisplayTab';
 import api_links from '../../constants/API';
 
 
@@ -25,7 +25,7 @@ export default function ExploreSubjects(props) {
     let displayCourse = course => {
         return (
             <TouchableOpacity>
-                <CommonNameTab course={course}/>
+                <CommonDisplayTab type={"course"} course={course}/>
             </TouchableOpacity>
         );
         // <Text>{`${course.common_name} - ${course.title}`}</Text>

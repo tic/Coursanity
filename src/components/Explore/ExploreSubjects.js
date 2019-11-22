@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import CommonDisplayTab from '../Courses/CommonDisplayTab';
 import api_links from '../../constants/API';
 
 
@@ -20,7 +21,7 @@ export default function ExploreSubjects(props) {
 
     let displaySubject = sub => {
         return (
-            <Text key={sub._id}>{`${sub.subject} - ${sub.name}`}</Text>
+            <CommonDisplayTab key={sub._id} type={"subject"} subject={sub}/>
         );
     }
 

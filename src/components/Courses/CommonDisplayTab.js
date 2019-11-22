@@ -6,7 +6,35 @@ import Colors from '../../constants/Colors';
 import api_links from '../../constants/API';
 
 
-export default function CommonNameTab(props) {
+export default function CommonDisplayTab(props) {
+
+    switch(props.type) {
+        case "course":
+        var content = (
+            <View style={styles.innerCard}>
+                <Text style={styles.commonName}>{props.course.common_name}</Text>
+                <View style={styles.extendedText}>
+                    <Text>{props.course.title}</Text>
+                </View>
+            </View>
+        );
+        break;
+
+        case "subject":
+        var content = (
+            <View style={styles.innerCard}>
+                <Text style={styles.commonName}>{props.subject.subject}</Text>
+                <View style={styles.extendedText}>
+                    <Text>{props.subject.name}</Text>
+                </View>
+            </View>
+        );
+        break;
+
+        default:
+        var content = (<View/>);
+        break;
+    }
 
     return (
         <View style={styles.container}>
@@ -14,12 +42,7 @@ export default function CommonNameTab(props) {
                     colors={[Colors.uvaOrange, '#ffffff', '#ffffff', Colors.uvaBlue]}
                     locations={[0, .3, .7, 1]}
                     style={styles.gradient}>
-                <View style={styles.innerCard}>
-                    <Text style={styles.commonName}>{props.course.common_name}</Text>
-                    <View style={styles.courseTitle}>
-                        <Text>{props.course.title}</Text>
-                    </View>
-                </View>
+                {content}
             </LinearGradient>
         </View>
     );
@@ -55,7 +78,7 @@ const styles = StyleSheet.create({
         paddingRight: 2.5,
         fontSize: 16,
     },
-    courseTitle: {
+    extendedText: {
         width: "73%",
         paddingLeft: 2.5,
         fontStyle: "italic",
