@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text, ScrollView, StyleSheet, FlatList } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, FlatList, TouchableOpacity, Dimensions } from 'react-native';
 import LoadingSpinner from '../LoadingSpinner';
+import CommonNameTab from '../Courses/CommonNameTab';
 import api_links from '../../constants/API';
 
 
@@ -23,8 +24,11 @@ export default function ExploreSubjects(props) {
 
     let displayCourse = course => {
         return (
-            <Text>{`${course.common_name} - ${course.title}`}</Text>
+            <TouchableOpacity>
+                <CommonNameTab course={course}/>
+            </TouchableOpacity>
         );
+        // <Text>{`${course.common_name} - ${course.title}`}</Text>
     }
 
     let nextPage = () => {
@@ -40,7 +44,12 @@ export default function ExploreSubjects(props) {
 
     return (
         <View>
-            <FlatList
+            <FlatList style={{
+                        width: Dimensions.get('screen').width,
+                    }}
+                    contentContainerStyle={{
+                        alignItems: 'center'
+                    }}
                     data={allCourses}
                     renderItem={({item}) => displayCourse(item)}
                     keyExtractor={item => item._id}
