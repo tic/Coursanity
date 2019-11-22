@@ -18,6 +18,7 @@ export default function CommonDisplayTab(props) {
                 </View>
             </View>
         );
+        var gradient = [Colors.uvaOrange, '#ffffff', '#ffffff', Colors.uvaBlue];
         break;
 
         case "subject":
@@ -29,6 +30,7 @@ export default function CommonDisplayTab(props) {
                 </View>
             </View>
         );
+        var gradient = [Colors.uvaBlue, '#ffffff', '#ffffff', Colors.uvaOrange];
         break;
 
         default:
@@ -39,7 +41,7 @@ export default function CommonDisplayTab(props) {
     return (
         <View style={styles.container}>
             <LinearGradient
-                    colors={[Colors.uvaOrange, '#ffffff', '#ffffff', Colors.uvaBlue]}
+                    colors={gradient}
                     locations={[0, .3, .7, 1]}
                     style={styles.gradient}>
                 {content}
