@@ -5,6 +5,7 @@ import SearchResults from './SearchResults';
 import { FontAwesome } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient'
 import Colors from '../../constants/Colors';
+import SemesterSelector from '../SemesterSelector';
 
 
 export default class SearchScreen extends React.Component {
@@ -40,9 +41,17 @@ export default class SearchScreen extends React.Component {
         return this.state.search;
     }
 
+    changeSemester(semesterID) {
+        this.setState({
+            semesterID,
+        })
+    }
+
     render(){
         return (
         <View style={{flex:1}}>
+          <SemesterSelector
+                  setSemesterID={this.changeSemester.bind(this)}/>
           <LinearGradient style={styles.container}
                   start={{x: 0.0, y: 0.0}}
                   end={{x: 0.0, y: 1.0}}

@@ -37,16 +37,25 @@ export default function ExploreSubjects(props) {
         });
     }
 
+    let generateCourseOpener = course => {
+        return () => {
+            props.navigation.push('CourseView', {
+                semesterID: props.semesterID,
+                subject: course.subject,
+                catalog_number: course.catalog_number,
+            });
+        }
+    }
+
     let displayCourse = course => {
         return (
-            <TouchableOpacity>
+            <TouchableOpacity key={course._id} onPress={generateCourseOpener(course)}>
                 <CommonDisplayTab type={"course"} course={course}/>
             </TouchableOpacity>
         );
     }
 
     let nextPage = async () => {
-        // console.log("Getting another page |", state.page + 1);
         get();
     }
 

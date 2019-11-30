@@ -6,6 +6,7 @@ import { api_links } from '../constants/API';
 import ExploreSubjects from '../components/Explore/ExploreSubjects';
 import ExploreSchools from '../components/Explore/ExploreSchools';
 import ExploreCourses from '../components/Explore/ExploreCourses';
+import CourseView from '../components/Courses/CourseView';
 
 var async = require('async');
 
@@ -16,12 +17,11 @@ const titles = [
     'Explore Courses',
 ];
 
-export default function ExploreScreen(props) {
+function ExploreScreen(props) {
     const [semesterID, setSemesterID] = useState("0000");
 
     let setTitle = index => {
         let newTitle = titles[index];
-        console.log(props.navigation);
         props.navigation.setParams({Title: newTitle});
     }
 
@@ -32,6 +32,7 @@ export default function ExploreScreen(props) {
             <View style={styles.container}>
                 <Swiper style={styles.swiper}
                         showsPagination={false}
+                        loop={false}
                         index={START_TILE}
                         onIndexChanged={index => setTitle(index)}>
                     <View style={styles.pane}>
@@ -44,13 +45,23 @@ export default function ExploreScreen(props) {
                     </View>
                     <View style={styles.pane}>
                         <Text style={styles.titles}>Explore Courses</Text>
-                        <ExploreCourses semesterID={semesterID}/>
+                        <ExploreCourses semesterID={semesterID}
+                                        navigation={props.navigation}/>
                     </View>
                 </Swiper>
             </View>
         </View>
     );
 }
+
+import { createStackNavigator } from 'react-navigation'
+
+export default StackNavigator = createStackNavigator({
+    ExploreScreen,
+    CourseView
+});
+
+StackNavigator.navigationOptions = {header:null}
 
 ExploreScreen.navigationOptions = {
     title: 'Explore',
