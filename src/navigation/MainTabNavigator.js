@@ -6,7 +6,7 @@ import Colors from '../constants/Colors';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
-import SearchScreen from '../screens/SearchScreen';
+import SearchScreen from '../screens/SearchIndex';
 import SettingsScreen from '../screens/SettingsScreen';
 import ExploreScreen from '../screens/ExploreScreen';
 
