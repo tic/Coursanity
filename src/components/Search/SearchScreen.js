@@ -21,7 +21,7 @@ export default class SearchScreen extends React.Component {
     })
 
     handleClick = () => {
-        console.log("Started search with query", this.state.search);
+        //console.log("Started search with query", this.state.search);
 
         this.props.navigation.push("SearchResults", {
             query:this.state.search,
