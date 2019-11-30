@@ -33,6 +33,18 @@ export default function CommonDisplayTab(props) {
         var gradient = [Colors.uvaBlue, '#ffffff', '#ffffff', Colors.uvaOrange];
         break;
 
+        case "school":
+        var content = (
+            <View style={styles.innerCard}>
+                <Text style={styles.commonName}>{props.school}</Text>
+                <View style={styles.extendedText}>
+                    <Text>{props.name}</Text>
+                </View>
+            </View>
+        );
+        var gradient = [Colors.uvaBlue, '#ffffff', '#ffffff', Colors.uvaOrange];
+        break;
+
         default:
         var content = (<View/>);
         break;

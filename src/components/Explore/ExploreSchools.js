@@ -1,33 +1,27 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
-import api_links from '../../constants/API';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import CommonDisplayTab from '../Courses/CommonDisplayTab';
+import { school_map } from '../../constants/API';
 
 
 // Access current semester id via props.semesterID
 // It's a hook, so when the user changes the main slider, the
 //      will automagically propagate down here.
 export default function ExploreSchools(props) {
-    const [schools, setSchools] = useState([]);
-
-    useEffect(() => {
-        const get = async () => {
-            let resp = await fetch(`${api_links.api_base}/schools`);
-            let parsed = await resp.json();
-            setSchools(parsed);
-        }
-        // get();
-    }, []);
-
-    let displaySchool = scl => {
+    let displaySchool = (key, index) => {
         return (
-            <Text key={scl._id}>{`placeholder`}</Text>
+            <TouchableOpacity key={index}>
+                <CommonDisplayTab   type="school"
+                                    school={key}
+                                    name={school_map[key]}/>
+            </TouchableOpacity>
         );
     }
 
     return (
         <View>
             <ScrollView>
-                {schools.map((item, index) => displaySchool(item))}
+                {Object.keys(school_map).map(displaySchool)}
             </ScrollView>
         </View>
     );

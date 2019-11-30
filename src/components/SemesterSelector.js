@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-import api_links from '../constants/API';
+import { api_links } from '../constants/API';
 
 /**
  *      How to use this component:
