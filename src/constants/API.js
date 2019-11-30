@@ -1,6 +1,7 @@
 
 const api_links = {
-    api_base: 'https://scheduler.gifit.io/api'
+    api_base: 'https://scheduler.gifit.io/api',
+    devhub_api: 'https://api.devhub.virginia.edu/api/v1'
 }
 
 const school_map = {
