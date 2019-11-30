@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import { View, Text, ScrollView, StyleSheet, FlatList, TouchableOpacity, Dimensions } from 'react-native';
 import LoadingSpinner from '../LoadingSpinner';
 import CommonDisplayTab from '../Courses/CommonDisplayTab';
-import api_links from '../../constants/API';
+import {withNavigation} from 'react-navigation'
+import {api_links} from '../../constants/API';
 
 
 // Access current semester id via props.semesterID
@@ -13,11 +14,13 @@ export default function SearchResults(props) {
     const [maxPage, setMaxPage] = useState(Number.MAX_VALUE);
     const [page, setPage] = useState(-1);
 
-    console.log(props);
+    //const { navigation } = this.props;
+
+    console.log();
 
     const get = async pg => {
         // console.log(`${api_links.api_base}/search?term_id=${props.semesterID}&page=${pg}&per=50`);
-        let resp = await fetch(`${api_links.api_base}/search?fuzzy=1&term_id=1202&page=${pg}&query=${props.search}&per=50`);
+        let resp = await fetch(`${api_links.api_base}/search?fuzzy=1&term_id=${props.navigation.getParam("sem_id", "")}&page=${pg}&query=${props.navigation.getParam("query", "")}&per=50`);
         let parsed = await resp.json();
 
         setAllCourses(allCourses.concat(parsed.data));

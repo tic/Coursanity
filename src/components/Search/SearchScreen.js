@@ -11,7 +11,8 @@ export default class SearchScreen extends React.Component {
     constructor(props){
         super(props)
         this.state= {
-            search: ""
+            search: "",
+            semesterID:"1202"
         };
     }
 
@@ -21,7 +22,11 @@ export default class SearchScreen extends React.Component {
 
     handleClick = () => {
         console.log("Started search with query", this.state.search);
-        this.props.navigation.navigate("SearchResults")
+
+        this.props.navigation.push("SearchResults", {
+            query:this.state.search,
+            sem_id:this.state.semesterID
+        })
         //launch new view of searches
     }
 
@@ -38,7 +43,6 @@ export default class SearchScreen extends React.Component {
     render(){
         return (
         <View style={{flex:1}}>
-        <View style={{height:"25%"}}>
           <LinearGradient style={styles.container}
                   start={{x: 0.0, y: 0.0}}
                   end={{x: 0.0, y: 1.0}}
@@ -59,10 +63,6 @@ export default class SearchScreen extends React.Component {
                   </TouchableOpacity>
               </View>
           </LinearGradient>
-          </View>
-          <View style={styles.pane}>
-              <SearchResults semesterID={"1202"} search={this.state.search}/>
-          </View>
      </View>
       )
   }
