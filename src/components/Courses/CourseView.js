@@ -51,6 +51,16 @@ export default class CourseView extends React.Component {
         });
     }
 
+    launchSectionView(course) {
+        return () => {
+            this.props.navigation.push('SectionView', {
+                semesterID: this.state.semesterID,
+                sis_id: course.sis_id,
+                title: `${course.common_name} - ${course.section}`,
+            });
+        }
+    }
+
     render() {
         if(this.state.courses.length > 0) return (
             <ScrollView style={styles.container}>
@@ -66,7 +76,9 @@ export default class CourseView extends React.Component {
                 <FlatList keyExtractor={item => item._id}
                     data={this.formatCourses()}
                     renderItem={({item}) => (
-                        <TouchableOpacity style={styles.row}>
+                        <TouchableOpacity
+                                style={styles.row}
+                                onPress={this.launchSectionView(item).bind(this)}>
                             <Text style={{...styles.cells, width: WIDTH * .1}}>{item.section}</Text>
                             <Text style={{...styles.cells, width: WIDTH * .3}}>{item.stringifiedInstructors}</Text>
                             <Text style={{...styles.cells, width: WIDTH * .35}}>{item.stringifiedMeetings}</Text>
