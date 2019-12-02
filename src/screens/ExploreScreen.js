@@ -7,6 +7,7 @@ import ExploreSubjects from '../components/Explore/ExploreSubjects';
 import ExploreSchools from '../components/Explore/ExploreSchools';
 import ExploreCourses from '../components/Explore/ExploreCourses';
 import CourseView from '../components/Courses/CourseView';
+import SectionView from '../components/Courses/SectionView';
 
 var async = require('async');
 
@@ -58,7 +59,8 @@ import { createStackNavigator } from 'react-navigation'
 
 export default StackNavigator = createStackNavigator({
     ExploreScreen,
-    CourseView
+    CourseView,
+    SectionView
 });
 
 StackNavigator.navigationOptions = {header:null}
