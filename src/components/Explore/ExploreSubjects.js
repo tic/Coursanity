@@ -20,9 +20,14 @@ export default function ExploreSubjects(props) {
         get();
     }, []);
 
+    let generateSubjectViewOpener = subject => () => props.navigation.push('SubjectView', {
+        semesterID: props.semesterID,
+        subject,
+    });
+
     let displaySubject = sub => {
         return (
-            <TouchableOpacity key={sub._id}>
+            <TouchableOpacity key={sub._id} onPress={generateSubjectViewOpener(sub)}>
                 <CommonDisplayTab type={"subject"} subject={sub}/>
             </TouchableOpacity>
         );
