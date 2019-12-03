@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import CommonDisplayTab from '../Courses/CommonDisplayTab';
 import { api_links } from '../../constants/API';
+import LoadingSpinner from '../LoadingSpinner';
 
 
 // Access current semester id via props.semesterID
@@ -27,6 +28,7 @@ export default function ExploreSubjects(props) {
         );
     }
 
+    // {subjects.length > 0 ? (<View/>) : (<LoadingSpinner/>)}
     return (
         <View>
             <ScrollView>

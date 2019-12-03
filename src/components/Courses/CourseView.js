@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, FlatList, Dimensions, TouchableOpacity } from 'react-native';
 import { api_links } from '../../constants/API.js';
-import {Table, Row, Rows} from 'react-native-table-component';
 
 const WIDTH = Dimensions.get('screen').width;
 

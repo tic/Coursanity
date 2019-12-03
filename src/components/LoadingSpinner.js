@@ -1,17 +1,17 @@
 import React from 'react';
-import {ClipLoader} from 'react-spinners/ClipLoader'
 import Colors from '../constants/Colors';
 
+const TYPES = ['BallTriangle', 'Bars', 'Circles', 'Grid', 'Oval', 'Puff', 'Rings',
+                'ThreeDots', 'Watch', 'Triangle', 'Mutating Dots', 'CradleLoader'];
+
+
 export default function LoadingSpinner(props) {
-    let name = props.name ? props.name : "cube-grid";
+    // let name = props.name ? props.name : TYPES[Math.floor(Math.random() * TYPES.length)];
+    let name = 'BarLoader';
     let color = props.color ? props.color : Colors.uvaOrange;
 
+    // type={name}
     return (
-        <ClipLoader
-            sizeUnit={"px"}
-            size={150}
-            color={'#ff00ff'}
-        />
-
+        <View/>
     );
 }

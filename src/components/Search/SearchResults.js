@@ -40,9 +40,20 @@ export default function SearchResults(props) {
         });
     }
 
+    let generateCourseOpener = (course) => {
+        console.log(sem_id, course.subject, course.catalog_number);
+        return () => {
+            props.navigation.push('CourseView', {
+                semesterID: sem_id,
+                subject: course.subject,
+                catalog_number: course.catalog_number
+            })
+        }
+    }
+
     let displayCourse = course => {
         return (
-            <TouchableOpacity>
+            <TouchableOpacity onPress={generateCourseOpener(course)}>
                 <CommonDisplayTab type={"course"} course={course}/>
             </TouchableOpacity>
         );
@@ -50,7 +61,7 @@ export default function SearchResults(props) {
 
     let nextPage = async () => {
         // console.log("Getting another page |", state.page + 1);
-        get();
+        if(state.page < state.maxPage) get();
     }
 
     // const loader = (<LoadingSpinner/>);
