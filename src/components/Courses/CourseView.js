@@ -35,14 +35,15 @@ export default class CourseView extends React.Component {
 
     formatCourses() {
         return this.state.courses.map(course => {
+            let instructors = course.instructors.filter((instructor, index) => index === course.instructors.indexOf(instructor));
             if(course.meetings.length > 0) {
                 course.stringifiedMeetings = course.meetings.reduce((accum, meeting) => {
                     return `${accum}${meeting.days} ${meeting.start} - ${meeting.finish}`;
                 }, ``);
             } else course.stringifiedMeetings = "N/A";
 
-            if(course.instructors.length > 0) {
-                let s = course.instructors.reduce((accum, instructor) => `${accum}${instructor} & `, ``);
+            if(instructors.length > 0) {
+                let s = instructors.reduce((accum, instructor) => `${accum}${instructor} & `, ``);
                 course.stringifiedInstructors = s.slice(0, -3);
             } else course.stringifiedInstructors = "N/A";
 
