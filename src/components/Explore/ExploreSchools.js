@@ -8,9 +8,18 @@ import { school_map } from '../../constants/API';
 // It's a hook, so when the user changes the main slider, the
 //      will automagically propagate down here.
 export default function ExploreSchools(props) {
+
+    let generateSchoolOpener = school => () => {
+        props.navigation.push('SchoolView', {
+            school,
+            name: school_map[school],
+            semesterID: props.semesterID,
+        });
+    }
+
     let displaySchool = (key, index) => {
         return (
-            <TouchableOpacity key={index}>
+            <TouchableOpacity key={index} onPress={generateSchoolOpener(key)}>
                 <CommonDisplayTab   type="school"
                                     school={key}
                                     name={school_map[key]}/>

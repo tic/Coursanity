@@ -3,22 +3,23 @@ import { View, Text, StyleSheet } from 'react-native';
 import Colors from '../../../constants/Colors';
 
 export default function InfoBox(props) {
-    let profDisplay = (props.professors.length) > 2 ? props.professors.reduce((accum, prof, index) => {
+    let profs = professors = props.professors.filter((instructor, index) => index === props.professors.indexOf(instructor));
+    let profDisplay = (profs.length) > 2 ? profs.reduce((accum, prof, index) => {
         switch(index) {
-            case props.professors.length - 2:
+            case profs.length - 2:
             return `${accum}${prof}, & `;
 
-            case props.professors.length - 1:
+            case profs.length - 1:
             return `${accum}${prof}`;
 
             default:
             return `${accum}${prof}, `;
         }
     }, ``) : (
-        (props.professors.length === 2) ? `${props.professors[0]} & ${props.professors[1]}` : props.professors[0]
+        (profs.length === 2) ? `${profs[0]} & ${profs[1]}` : profs[0]
     );
 
-    // let meetingDisplay = 
+    // let meetingDisplay =
 
     return (
         <View>
