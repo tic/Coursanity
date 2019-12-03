@@ -41,7 +41,6 @@ export default function SearchResults(props) {
     }
 
     let generateCourseOpener = (course) => {
-        console.log(sem_id, course.subject, course.catalog_number);
         return () => {
             props.navigation.push('CourseView', {
                 semesterID: sem_id,
