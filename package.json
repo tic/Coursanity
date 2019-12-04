@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "expo-google-app-auth": "^7.0.0",
     "minizlib": "^2.1.0"
   },
   "name": "uvascheduler-react",
