@@ -22,9 +22,38 @@ export default function InfoBox(props) {
     // let meetingDisplay =
 
     return (
-        <View>
-            <Text>Instructor{props.professors.length > 1 ? 's' : ''}</Text>
-            <Text>{profDisplay}</Text>
+        <View style={styles.container}>
+            <Text style={styles.sectionText}>Section Information</Text>
+            <View style={styles.row}>
+                <Text>Instructor{profs.length > 1 ? 's' : ''}</Text>
+                <Text>{profDisplay}</Text>
+            </View>
+            <View style={styles.row}>
+                <Text>Meetings</Text>
+                <View style={styles.col}>
+                    <Text>Meeting 1</Text>
+                    <Text>Meeting 2</Text>
+                </View>
+            </View>
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        marginTop: 15,
+        marginBottom: 20
+    },
+    sectionText: {
+        fontSize: 16,
+        textAlign: 'center',
+    },
+    row: {
+        flexDirection: 'row',
+    },
+    col: {
+        flexDirection: 'column',
+    }
+})

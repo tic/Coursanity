@@ -32,7 +32,7 @@ function ExploreScreen(props) {
                 setSemesterID={setSemesterID}/>
             <View style={styles.container}>
                 <Swiper style={styles.swiper}
-                        showsPagination={false}
+                        showsPagination={true}
                         loop={false}
                         index={START_TILE}
                         onIndexChanged={index => setTitle(index)}>
