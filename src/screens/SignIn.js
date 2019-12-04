@@ -21,7 +21,9 @@ export default function SignIn({navigation}) {
                 androidClientId:
                     //'322502843203-7e6o9334dvsha10rrkqfprdjkhq5bsln.apps.googleusercontent.com',
                     '389833247192-q4rdv9nj34okv7uiq5ape07m43bdrp0e.apps.googleusercontent.com',            
-                    scopes: ['profile', 'email'],
+                iosClientId: 
+                    '389833247192-nbml6gcrhr91g2oti5m33kjdgdmkkcu8.apps.googleusercontent.com',
+                scopes: ['profile', 'email'],
             });
 
             if (result.type === 'success') {
