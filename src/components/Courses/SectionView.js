@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView, Button, Share, TouchableOpacity, Text } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { FontAwesome } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient'
@@ -20,10 +20,42 @@ export default class SectionView extends React.Component{
         }
     }
 
-    static navigationOptions = ({navigation}) => {
-        return {
-            title: navigation.getParam('title')
+    _onShare = async () => {
+        console.log("Sharing...");
+        try {
+          const result = await Share.share({
+            message:
+              'Check out '+this.state.course.subject+this.state.course.catalog_number+'-'+this.state.course.section+' with SIS ID '+this.state.sis_id,
+          });
+
+          if (result.action === Share.sharedAction) {
+            if (result.activityType) {
+              // shared with activity type of result.activityType
+            } else {
+              // shared
+            }
+          } else if (result.action === Share.dismissedAction) {
+            // dismissed
+          }
+        } catch (error) {
+          alert(error.message);
         }
+      };
+
+    static navigationOptions = ({navigation}) => {
+        const { params = {} } = navigation.state;
+        return {
+            title: navigation.getParam('title'),
+            headerRight:
+            <TouchableOpacity title="Share" onPress={params.onShare}>
+              <Text>Share</Text>
+            </TouchableOpacity>
+
+        }
+    }
+
+    componentDidMount() {
+        this.props.navigation.setParams({ onShare: this._onShare });
     }
 
     componentWillMount() {

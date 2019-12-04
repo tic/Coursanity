@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, Dimensions } from 'react-native';
+import { View, StyleSheet, Text, Dimensions, Picker } from 'react-native';
 import Colors from '../../../constants/Colors';
 import { api_links } from '../../../constants/API';
 import { LineChart } from "react-native-chart-kit";
@@ -87,39 +87,9 @@ export default class GradeBox extends React.Component{
                   borderRadius: 16
                 }}
               />
-              <LineChart
-                data={{
-                  labels: this.state.terms,
-                  datasets: [
-                    {
-                      data: this.state.averages,
-                  },
-                  {
-                      data: [4], // <=== e.g: [400], the maximum you want, only one value in the array.
-                      color: () => `rgba(0, 0, 0, 0)` // <=== Here enable transparency of the rgba() to hide the max Y Value dot from your chart.
-                    },
-                  ]
-                }}
-                width={Dimensions.get("window").width} // from react-native
-                height={220}
-                fromZero={true}
-                chartConfig={{
-                  backgroundColor: "#e26a00",
-                  backgroundGradientFrom: "#fb8c00",
-                  backgroundGradientTo: "#ffa726",
-                  decimalPlaces: 2, // optional, defaults to 2dp
-                  color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                  labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                  style: {
-                    borderRadius: 16
-                  },
-                }}
-                bezier
-                style={{
-                  marginVertical: 8,
-                  borderRadius: 16
-                }}
-              />
+              <Picker selectedValue="none">
+                <Picker.Item label="None" value="none" />
+              </Picker>
             </View>
         )
     }
