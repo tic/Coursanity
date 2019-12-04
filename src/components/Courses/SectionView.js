@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, Button, Share, TouchableOpacity, Text } from 'react-native';
+import { AsyncStorage, View, StyleSheet, ScrollView, Button, Share, TouchableOpacity, Text } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { FontAwesome } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient'
@@ -42,20 +42,48 @@ export default class SectionView extends React.Component{
         }
       };
 
+      _onAdd = async () => {
+          console.log("Adding...");
+          try {
+             const value = await AsyncStorage.getItem('COURSES');
+             if (value !== null) {
+               // We have data!!
+               console.log(value);
+             }
+             else{
+                 console.log("Setting up initial")
+                 await AsyncStorage.setItem('COURSES', JSON.stringify({courses:[]}));
+             }
+             parsed = await JSON.parse(value);
+             if(!parsed.courses.includes(this.state.sis_id)){
+                parsed.courses.push(this.state.sis_id);
+             }
+             await AsyncStorage.setItem('COURSES', JSON.stringify(parsed));
+           } catch (error) {
+               console.log("error")
+             // Error retrieving data
+           }
+        };
+
     static navigationOptions = ({navigation}) => {
         const { params = {} } = navigation.state;
         return {
             title: navigation.getParam('title'),
             headerRight:
-            <TouchableOpacity title="Share" onPress={params.onShare}>
-              <Text>Share</Text>
-            </TouchableOpacity>
-
+            <View>
+                <TouchableOpacity title="Share" onPress={params.onShare}>
+                  <Text>Share</Text>
+                </TouchableOpacity>
+                <TouchableOpacity title="Share" onPress={params.onAdd}>
+                  <Text>Add</Text>
+                </TouchableOpacity>
+            </View>
         }
     }
 
     componentDidMount() {
         this.props.navigation.setParams({ onShare: this._onShare });
+        this.props.navigation.setParams({ onAdd: this._onAdd });
     }
 
     componentWillMount() {
