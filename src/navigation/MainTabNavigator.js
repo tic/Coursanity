@@ -94,7 +94,6 @@ const tabNavigator = createBottomTabNavigator({
   HomeStack,
   ExploreStack,
   SearchStack,
-  ProfileStack,
 });
 tabNavigator.path = '';
 
