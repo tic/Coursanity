@@ -52,8 +52,41 @@ export default class GradeBox extends React.Component{
         //the two charts
         console.log(Dimensions.get("window").width)
         return (
-            <View>
-              <Text>Bezier Line Chart</Text>
+            <View style={styles.container}>
+              <Text style={styles.title}>Historic Grade Data</Text>
+              <LineChart
+                data={{
+                  labels: this.state.terms,
+                  datasets: [
+                    {
+                      data: this.state.averages,
+                  },
+                  {
+                      data: [4], // <=== e.g: [400], the maximum you want, only one value in the array.
+                      color: () => `rgba(0, 0, 0, 0)` // <=== Here enable transparency of the rgba() to hide the max Y Value dot from your chart.
+                    },
+                  ]
+                }}
+                width={Dimensions.get("window").width} // from react-native
+                height={220}
+                fromZero={true}
+                chartConfig={{
+                  backgroundColor: "#e26a00",
+                  backgroundGradientFrom: "#fb8c00",
+                  backgroundGradientTo: "#ffa726",
+                  decimalPlaces: 2, // optional, defaults to 2dp
+                  color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                  labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                  style: {
+                    borderRadius: 16
+                  },
+                }}
+                bezier
+                style={{
+                  marginVertical: 8,
+                  borderRadius: 16
+                }}
+              />
               <LineChart
                 data={{
                   labels: this.state.terms,
@@ -91,3 +124,32 @@ export default class GradeBox extends React.Component{
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        borderBottomColor: "black",
+        borderBottomWidth: 2,
+        borderTopColor: "black",
+        borderTopWidth: 2,
+        borderStyle: "solid",
+        paddingBottom: 10,
+        paddingTop: 10,
+    },
+    title: {
+        fontSize: 18,
+        color: Colors.uvaBlue,
+        marginBottom: 10,
+    },
+    map: {
+        height: 300,
+        width: "90%",
+        borderRadius: 20,
+    },
+    warning: {
+        color: Colors.uvaOrange,
+        fontWeight: "bold",
+    }
+})
