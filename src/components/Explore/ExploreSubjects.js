@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import CommonDisplayTab from '../Courses/CommonDisplayTab';
 import { api_links } from '../../constants/API';
+import LoadingSpinner from '../LoadingSpinner';
 
 
 // Access current semester id via props.semesterID
@@ -19,14 +20,20 @@ export default function ExploreSubjects(props) {
         get();
     }, []);
 
+    let generateSubjectViewOpener = subject => () => props.navigation.push('SubjectView', {
+        semesterID: props.semesterID,
+        subject,
+    });
+
     let displaySubject = sub => {
         return (
-            <TouchableOpacity key={sub._id}>
+            <TouchableOpacity key={sub._id} onPress={generateSubjectViewOpener(sub)}>
                 <CommonDisplayTab type={"subject"} subject={sub}/>
             </TouchableOpacity>
         );
     }
 
+    // {subjects.length > 0 ? (<View/>) : (<LoadingSpinner/>)}
     return (
         <View>
             <ScrollView>

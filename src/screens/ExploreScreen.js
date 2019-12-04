@@ -7,8 +7,9 @@ import ExploreSubjects from '../components/Explore/ExploreSubjects';
 import ExploreSchools from '../components/Explore/ExploreSchools';
 import ExploreCourses from '../components/Explore/ExploreCourses';
 import CourseView from '../components/Courses/CourseView';
-
-var async = require('async');
+import SectionView from '../components/Courses/SectionView';
+import SubjectView from '../components/Courses/SubjectView';
+import SchoolView from '../components/Courses/SchoolView';
 
 const START_TILE = 1;
 const titles = [
@@ -37,11 +38,13 @@ function ExploreScreen(props) {
                         onIndexChanged={index => setTitle(index)}>
                     <View style={styles.pane}>
                         <Text style={styles.titles}>Explore Schools</Text>
-                        <ExploreSchools semesterID={semesterID}/>
+                        <ExploreSchools semesterID={semesterID}
+                                        navigation={props.navigation}/>
                     </View>
                     <View style={styles.pane}>
                         <Text style={styles.titles}>Explore Subjects</Text>
-                        <ExploreSubjects semesterID={semesterID}/>
+                        <ExploreSubjects semesterID={semesterID}
+                                         navigation={props.navigation}/>
                     </View>
                     <View style={styles.pane}>
                         <Text style={styles.titles}>Explore Courses</Text>
@@ -58,7 +61,10 @@ import { createStackNavigator } from 'react-navigation'
 
 export default StackNavigator = createStackNavigator({
     ExploreScreen,
-    CourseView
+    CourseView,
+    SectionView,
+    SubjectView,
+    SchoolView
 });
 
 StackNavigator.navigationOptions = {header:null}

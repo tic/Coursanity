@@ -1,17 +1,7 @@
-import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import Colors from '../constants/Colors';
 import { MonoText } from '../components/StyledText';
-import CourseBlock from '../components/CourseBlock';
 
 // <View style={styles.helpContainer}>
 //   <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
@@ -35,83 +25,58 @@ import CourseBlock from '../components/CourseBlock';
 // </View>
 
 export default function HomeScreen() {
-  return (
-    <View style={styles.container}>
-      <View style={styles.main_header}>
-        <Image source={require('../assets/images/scheduler-icon.png')} style={{
-            width: 50,
-            height: 50,
-        }}/>
-        <Text style={styles.main_header_text}>
-          UVA Scheduler
-        </Text>
-      </View>
-      <ScrollView
-        style={styles.sub_container}
-        contentContainerStyle={styles.contentContainer}>
-        <CourseBlock/>
-        <Text style={styles.generic_text}>
-          Designed to integrate Lou's List with scheduling tools.
-        </Text>
-      </ScrollView>
-    </View>
-  );
+    return (
+        <View style={styles.container}>
+            <Image source={require('../assets/images/tile.jpg')} style={styles.backgroundImage}/>
+            <View style={styles.main_header}>
+                <Image  source={require('../assets/images/scheduler-icon.png')}
+                        style={{
+                            width: 50,
+                            height: 50,
+                        }}/>
+                <Text style={styles.main_header_text}>Coursanity</Text>
+            </View>
+            <Text style={{...styles.generic_text,
+                            backgroundColor: "white",
+                            textAlign: "center",
+                            paddingBottom: 20,
+                            fontStyle: "italic"
+                        }}>
+                cure the course insanity</Text>
+            <ScrollView
+                    style={styles.sub_container}
+                    contentContainerStyle={styles.contentContainer}>
+                <Text style={styles.generic_text}>
+                    Overview
+                </Text>
+            </ScrollView>
+        </View>
+    );
 }
 
 HomeScreen.navigationOptions = {
   header: null,
 };
 
-function DevelopmentModeNotice() {
-  if (__DEV__) {
-    const learnMoreButton = (
-      <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
-        Learn more
-      </Text>
-    );
-
-    return (
-      <Text style={styles.developmentModeText}>
-        Development mode is enabled: your app will be slower but you can use
-        useful development tools. {learnMoreButton}
-      </Text>
-    );
-  } else {
-    return (
-      <Text style={styles.developmentModeText}>
-        You are not in development mode: your app will run at full speed.
-      </Text>
-    );
-  }
-}
-
-function handleLearnMorePress() {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/workflow/development-mode/'
-  );
-}
-
-function handleHelpPress() {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/workflow/up-and-running/#cant-see-your-changes'
-  );
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#232d4b',
   },
-  sub_container: {
-    marginLeft: 10,
-    marginRight: 10,
+  backgroundImage: {
+    position: "absolute",
+    resizeMode: "repeat",
+    height: 1000,
+    zIndex: -1
   },
-  developmentModeText: {
-    marginBottom: 20,
-    color: '#fff',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
+  sub_container: {
+    marginLeft: 15,
+    marginRight: 15,
+    padding: 10,
+    backgroundColor: "white",
+    borderTopWidth: 3,
+    borderTopColor: 'black',
+    borderStyle: 'solid',
   },
   contentContainer: {
     paddingTop: 30,
@@ -120,25 +85,23 @@ const styles = StyleSheet.create({
     flex: 0,
     flexDirection: 'row',
     justifyContent: 'center',
-    paddingTop: 50,
-    paddingBottom: 25,
-    borderBottomWidth: 3,
-    borderBottomColor: 'white',
-    borderStyle: 'solid',
+    marginTop: 50,
     marginLeft: 15,
     marginRight: 15,
+    backgroundColor: 'white',
+    padding: 10,
   },
   main_header_text: {
       marginTop: 8,
       marginLeft: 5,
       textAlign: 'center',
-      color: 'white',
+      color: Colors.uvaOrange,
       fontSize: 36,
       textShadowRadius: 3,
-      textShadowColor: 'white',
+      textShadowColor: Colors.uvaBlue,
   },
   generic_text: {
-    color: 'white',
+    color: 'black',
     fontSize: 18,
   },
 });
