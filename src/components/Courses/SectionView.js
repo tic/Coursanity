@@ -45,7 +45,7 @@ export default class SectionView extends React.Component{
                     <InfoBox professors={this.state.course.instructors} meetings={this.state.course.meetings}/>
                     <MeetingCalendar meetings={this.state.course.meetings}/>
                     <MeetingLocation meetings={this.state.course.meetings}/>
-                    <GradeBox professors={this.state.course.instructors}/>
+                    <GradeBox subject={this.state.course.subject}  catalog_number={this.state.course.catalog_number}/>
                 </ScrollView>
             </View>
         )
