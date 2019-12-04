@@ -20,14 +20,14 @@ export default function SignIn({navigation}) {
             const result = await Google.logInAsync({
                 androidClientId:
                     //'322502843203-7e6o9334dvsha10rrkqfprdjkhq5bsln.apps.googleusercontent.com',
-                    '389833247192-q4rdv9nj34okv7uiq5ape07m43bdrp0e.apps.googleusercontent.com',            
-                iosClientId: 
+                    '389833247192-q4rdv9nj34okv7uiq5ape07m43bdrp0e.apps.googleusercontent.com',
+                iosClientId:
                     '389833247192-nbml6gcrhr91g2oti5m33kjdgdmkkcu8.apps.googleusercontent.com',
                 scopes: ['profile', 'email'],
             });
 
             if (result.type === 'success') {
-                
+
                 navigation.push('Home');
                 /*setState({
                     signedIn: true,
@@ -51,7 +51,7 @@ export default function SignIn({navigation}) {
                     )}
             </View>
     );
-    
+
 }
 
 const LoginPage = props => {
@@ -84,6 +84,10 @@ const LoginPage = props => {
     );
 };
 
+SignIn.navigationOptions = ({ navigation }) => ({
+    title: "Google Sign In",
+});
+
 const LoggedInPage = props => {
     return (
         <View style={styles.container}>
@@ -93,7 +97,7 @@ const LoggedInPage = props => {
     );
 };
 
-  
+
 
 const styles = StyleSheet.create({
     container: {
@@ -101,7 +105,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#232d4b',
         alignItems: 'center',
         justifyContent: 'center',
-    },  
+    },
     header: {
         fontSize: 25,
     },
@@ -139,5 +143,5 @@ const styles = StyleSheet.create({
         fontSize:24,
         color: 'white'
       }
-    
+
 });
