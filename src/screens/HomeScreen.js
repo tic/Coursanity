@@ -24,31 +24,36 @@ import { MonoText } from '../components/StyledText';
 //   </View>
 // </View>
 
-export default function HomeScreen() {
+export default function HomeScreen(props) {
+    let userFullName = props.navigation.getParam('name'),
+        profilePicture = props.navigation.getParam('photoUrl');
     return (
         <View style={styles.container}>
             <Image source={require('../assets/images/tile.jpg')} style={styles.backgroundImage}/>
-            <View style={styles.main_header}>
-                <Image  source={require('../assets/images/scheduler-icon.png')}
-                        style={{
-                            width: 50,
-                            height: 50,
-                        }}/>
-                <Text style={styles.main_header_text}>Coursanity</Text>
+            <View>
+                <View style={styles.main_header}>
+                    <Image  source={require('../assets/images/scheduler-icon.png')}
+                            style={{
+                                width: 50,
+                                height: 50,
+                            }}/>
+                    <Text style={styles.main_header_text}>Coursanity</Text>
+                </View>
+                <Text style={{...styles.generic_text,
+                                backgroundColor: "white",
+                                textAlign: "center",
+                                paddingBottom: 10,
+                                fontStyle: "italic",
+                                marginLeft: 15,
+                                marginRight: 15,
+                            }}>
+                    cure the course insanity
+                </Text>
             </View>
-            <Text style={{...styles.generic_text,
-                            backgroundColor: "white",
-                            textAlign: "center",
-                            paddingBottom: 20,
-                            fontStyle: "italic"
-                        }}>
-                cure the course insanity</Text>
             <ScrollView
                     style={styles.sub_container}
                     contentContainerStyle={styles.contentContainer}>
-                <Text style={styles.generic_text}>
-                    Overview
-                </Text>
+                <Text style={styles.generic_text}>Welcome back, {"userFullName"}!</Text>
             </ScrollView>
         </View>
     );
@@ -82,7 +87,6 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
   main_header: {
-    flex: 0,
     flexDirection: 'row',
     justifyContent: 'center',
     marginTop: 50,
