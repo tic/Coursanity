@@ -37,8 +37,8 @@ export default function HomeScreen(props) {
                JSON.parse(value).then((parsed)=>{
                    this.setState({ courses: parsed });
                    console.log(parsed);
-               }).catch(console.log("parse error"));
-           }).catch("fetch error");
+               }).catch(()=>console.log("parse error"));
+           }).catch(()=>console.log("fetch error"));
          } catch (error) {
              console.log("error")
            // Error retrieving data

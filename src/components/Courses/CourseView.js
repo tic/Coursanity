@@ -85,7 +85,6 @@ export default class CourseView extends React.Component {
                             <Text style={{...styles.cells, width: WIDTH * .25}}>{item.type}</Text>
                         </TouchableOpacity>
                     )}/>
-                <Text>Grade data for this course</Text>
             </ScrollView>
         );
         return (<View/>);
