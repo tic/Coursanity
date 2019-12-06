@@ -27,6 +27,9 @@ import { MonoText } from '../components/StyledText';
 export default function HomeScreen(props) {
     let userFullName = props.navigation.getParam('name'),
         profilePicture = props.navigation.getParam('photoUrl');
+
+    let courses = "";
+
     return (
         <View style={styles.container}>
             <Image source={require('../assets/images/tile.jpg')} style={styles.backgroundImage}/>
@@ -55,6 +58,7 @@ export default function HomeScreen(props) {
                     contentContainerStyle={styles.contentContainer}>
                 <Text style={styles.generic_text}>Welcome back, {userFullName}!</Text>
                 <Text style={styles.generic_text}>Previously added courses:</Text>
+                {courses || <Text style={styles.generic_text}>No saved courses found.</Text>}
             </ScrollView>
         </View>
     );

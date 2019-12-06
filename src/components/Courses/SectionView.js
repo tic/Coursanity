@@ -74,6 +74,31 @@ export default class SectionView extends React.Component{
            }
         };
 
+    _selectIcon = async() => {
+        try {
+           const value = await AsyncStorage.getItem('COURSES');
+           if (value !== null) {
+             // We have data!!
+           }
+           else{
+               //console.log("Setting up initial")
+               await AsyncStorage.setItem('COURSES', JSON.stringify({courses:[]}));
+           }
+           parsed = await JSON.parse(value);
+           if(!parsed.courses.includes(this.state.sis_id)){
+              this.props.navigation.setParams({ add: <FontAwesome size={24} name={'plus'} />})
+           }
+           else if(parsed.courses.includes(this.state.sis_id)){
+               this.props.navigation.setParams({ add: <FontAwesome size={24} name={'trash'} /> })
+           }
+           console.log(parsed.courses)
+           await AsyncStorage.setItem('COURSES', JSON.stringify(parsed));
+         } catch (error) {
+             console.log("error")
+           // Error retrieving data
+         }
+    }
+
     static navigationOptions = ({navigation}) => {
         const { params = {} } = navigation.state;
         return {
@@ -93,6 +118,7 @@ export default class SectionView extends React.Component{
     componentDidMount() {
         this.props.navigation.setParams({ onShare: this._onShare });
         this.props.navigation.setParams({ onAdd: this._onAdd });
+        this._selectIcon();
     }
 
     componentWillMount() {
