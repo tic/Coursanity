@@ -1,5 +1,5 @@
-import React from 'react';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Image, ScrollView, StyleSheet, Text, View, AsyncStorage } from 'react-native';
 import Colors from '../constants/Colors';
 import { MonoText } from '../components/StyledText';
 
@@ -25,10 +25,25 @@ import { MonoText } from '../components/StyledText';
 // </View>
 
 export default function HomeScreen(props) {
+    const [courses, setCourses] = useState({});
     let userFullName = props.navigation.getParam('name'),
         profilePicture = props.navigation.getParam('photoUrl');
 
-    let courses = "";
+    //get courses.
+    useEffect(() => {
+        // Your code here
+        try {
+           AsyncStorage.getItem('COURSES').then((value) =>{
+               JSON.parse(value).then((parsed)=>{
+                   this.setState({ courses: parsed });
+                   console.log(parsed);
+               }).catch(console.log("parse error"));
+           }).catch("fetch error");
+         } catch (error) {
+             console.log("error")
+           // Error retrieving data
+         }
+    }, []);
 
     return (
         <View style={styles.container}>
@@ -58,7 +73,7 @@ export default function HomeScreen(props) {
                     contentContainerStyle={styles.contentContainer}>
                 <Text style={styles.generic_text}>Welcome back, {userFullName}!</Text>
                 <Text style={styles.generic_text}>Previously added courses:</Text>
-                {courses || <Text style={styles.generic_text}>No saved courses found.</Text>}
+                <Text style={styles.generic_text}>No saved courses found.</Text>
             </ScrollView>
         </View>
     );
