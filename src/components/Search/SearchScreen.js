@@ -52,11 +52,7 @@ export default class SearchScreen extends React.Component {
         <View style={{flex:1}}>
           <SemesterSelector
                   setSemesterID={this.changeSemester.bind(this)}/>
-          <LinearGradient style={styles.container}
-                  start={{x: 0.0, y: 0.0}}
-                  end={{x: 0.0, y: 1.0}}
-                  locations={[0.28,0.43,0.58,0.73]}
-                  colors={[Colors.uvaOrange, "#eee", "#eee", Colors.uvaBlue]}>
+          <View style={styles.container}>
               <View style={styles.searchRow}>
                   <TextInput
                       style={styles.searchBar}
@@ -71,7 +67,7 @@ export default class SearchScreen extends React.Component {
                       />
                   </TouchableOpacity>
               </View>
-          </LinearGradient>
+          </View>
      </View>
       )
   }

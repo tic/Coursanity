@@ -48,7 +48,6 @@ export default class SectionView extends React.Component{
              const value = await AsyncStorage.getItem('COURSES');
              if (value !== null) {
                // We have data!!
-               console.log(value);
              }
              else{
                  console.log("Setting up initial")
