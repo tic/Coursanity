@@ -43,20 +43,30 @@ export default class SectionView extends React.Component{
       };
 
       _onAdd = async () => {
-          console.log("Adding...");
+          //console.log(this.props.navigation);
           try {
              const value = await AsyncStorage.getItem('COURSES');
              if (value !== null) {
                // We have data!!
              }
              else{
-                 console.log("Setting up initial")
+                 //console.log("Setting up initial")
                  await AsyncStorage.setItem('COURSES', JSON.stringify({courses:[]}));
              }
              parsed = await JSON.parse(value);
              if(!parsed.courses.includes(this.state.sis_id)){
                 parsed.courses.push(this.state.sis_id);
+                this.props.navigation.setParams({ add: <FontAwesome size={24} name={'trash'} />})
              }
+             else if(parsed.courses.includes(this.state.sis_id)){
+                 //remove from list.
+                 let i = parsed.courses.indexOf(this.state.sis_id);
+                 //console.log(i);
+                 //console.log("Removing:", this.state.sis_id)
+                 parsed.courses.splice(i, 1);
+                 this.props.navigation.setParams({ add: <FontAwesome size={24} name={'plus'} /> })
+             }
+             console.log(parsed.courses)
              await AsyncStorage.setItem('COURSES', JSON.stringify(parsed));
            } catch (error) {
                console.log("error")
@@ -69,12 +79,12 @@ export default class SectionView extends React.Component{
         return {
             title: navigation.getParam('title'),
             headerRight:
-            <View>
-                <TouchableOpacity title="Share" onPress={params.onShare}>
-                  <Text>Share</Text>
+            <View style={{flex: 1, flexDirection:'row'}}>
+                <TouchableOpacity style={{paddingRight:10}} title="Add" onPress={params.onAdd}>
+                  {params.add || <FontAwesome size={24} name={'plus'} />}
                 </TouchableOpacity>
-                <TouchableOpacity title="Share" onPress={params.onAdd}>
-                  <Text>Add</Text>
+                <TouchableOpacity style={{paddingRight:10}} title="Share" onPress={params.onShare}>
+                  <FontAwesome size={24} name={'share'} />
                 </TouchableOpacity>
             </View>
         }
@@ -101,7 +111,7 @@ export default class SectionView extends React.Component{
         return (
             <View style={{flex: 1}}>
                 <ScrollView>
-                    <InfoBox professors={this.state.course.instructors} meetings={this.state.course.meetings}/>
+                    <InfoBox professors={this.state.course.instructors} meetings={this.state.course.meetings} sis_id={this.state.sis_id}/>
                     <MeetingCalendar meetings={this.state.course.meetings}/>
                     <MeetingLocation meetings={this.state.course.meetings}/>
                     <GradeBox subject={this.state.course.subject}  catalog_number={this.state.course.catalog_number}/>

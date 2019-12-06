@@ -18,7 +18,7 @@ export default function CommonDisplayTab(props) {
                 </View>
             </View>
         );
-        var gradient = [Colors.uvaOrange, '#ffffff', '#ffffff', Colors.uvaBlue];
+        var gradient = [Colors.uvaBlue, '#ffffff', '#ffffff', Colors.uvaOrange];
         break;
 
         case "subject":
@@ -30,7 +30,8 @@ export default function CommonDisplayTab(props) {
                 </View>
             </View>
         );
-        var gradient = [Colors.uvaBlue, '#ffffff', '#ffffff', Colors.uvaOrange];
+        //var gradient = [Colors.uvaBlue, '#ffffff', '#ffffff', Colors.uvaOrange];
+        var gradient = [Colors.uvaOrange, '#ffffff', '#ffffff', Colors.uvaBlue];
         break;
 
         case "school":

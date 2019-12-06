@@ -53,11 +53,14 @@ export default function HomeScreen(props) {
             <ScrollView
                     style={styles.sub_container}
                     contentContainerStyle={styles.contentContainer}>
-                <Text style={styles.generic_text}>Welcome back, {"userFullName"}!</Text>
+                <Text style={styles.generic_text}>Welcome back, {userFullName}!</Text>
+                <Text style={styles.generic_text}>Previously added courses:</Text>
             </ScrollView>
         </View>
     );
 }
+
+
 
 HomeScreen.navigationOptions = {
   header: null,

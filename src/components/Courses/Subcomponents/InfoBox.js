@@ -21,6 +21,8 @@ export default function InfoBox(props) {
         (profs.length === 2) ? `${profs[0]} & ${profs[1]}` : profs[0]
     );
 
+    console.log(props)
+
     // let meetingDisplay =
 
     return (
@@ -39,6 +41,10 @@ export default function InfoBox(props) {
                         return (<Text key={i}>{`${meeting.days} ${timeA}${meeting.start.slice(-3)}-${timeB}${meeting.finish.slice(-3)}`}</Text>);
                     })}
                 </View>
+            </View>
+            <View style={{...styles.row, marginTop: 5}}>
+            <Text style={{width: WIDTH * .25}}>SIS ID</Text>
+                <Text style={{width: WIDTH * .25}}>{props.sis_id}</Text>
             </View>
         </View>
     );
