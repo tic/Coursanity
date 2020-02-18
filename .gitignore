@@ -59,3 +59,7 @@ typings/
 
 # next.js build output
 .next
+
+__tests__/
+.expo/
+.expo-shared/
